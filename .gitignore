@@ -1,0 +1,4 @@
+node_modules/
+dist/
+gulp_readme.txt
+.DS_store
