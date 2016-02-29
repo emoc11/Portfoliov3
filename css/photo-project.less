@@ -1,32 +1,31 @@
-
-@keyframes photo-opacity {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-.page-photo {
+.page-photo-project {
 
 	.photos {
-	  line-height: 10%;
+		-webkit-column-count: 4;
+		-webkit-column-gap:   0px;
+		-webkit-column-fill: balance;
+		-moz-column-count:    4;
+		-moz-column-gap:      0px;
+		-moz-column-fill: balance;
+		column-count:         4;
+		column-gap:           0px;
+		column-fill: balance;
 
-	  -webkit-column-count: 4;
-	  -webkit-column-gap:   0px;
-	  -moz-column-count:    4;
-	  -moz-column-gap:      0px;
-	  column-count:         4;
-	  column-gap:           0px;
+		line-height: 0;
 
 		.photos-img {
-			display: none;
+			display: block;
 			overflow: hidden;
+			opacity: 0;
 
 			& img {
-				display: none;
+				display: block;
 				width: 100%;
 				height: auto;
 				transition: all 15s ease;
-				transform: translateZ(0);
-			overflow: hidden;
+				-webkit-transform:translateZ(0);
+				-ms-transform:translateZ(0);
+				transform:translateZ(0);
 			}
 
 			&:hover img {
@@ -39,9 +38,9 @@
 
 	@media (max-width: 1200px) {
 		.photos {
-		-moz-column-count:    3;
-		-webkit-column-count: 3;
-		column-count:         3;
+		-moz-column-count:    4;
+		-webkit-column-count: 4;
+		column-count:         4;
 		}
 	}
 	@media (max-width: 1000px) {

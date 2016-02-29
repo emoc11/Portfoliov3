@@ -1,0 +1,119 @@
+@keyframes albumTransition {
+    from {
+    	opacity: 0;
+		-webkit-transform: translateY(50px);
+		-ms-transform: translateY(50px);
+		transform: translateY(50px);
+    }
+    to {
+    	opacity: 1;
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+		transform: translateY(0);
+    }
+}
+
+.loopAnimA(2);
+.loopAnimA(@row, @ite: 1) when (@ite =< @row) {
+	.slideRight-container a:nth-child(@{ite}) {
+	    -webkit-animation-delay: (.3s * @ite) !important;
+	    animation-delay: (.3s * @ite) !important;
+	}
+	.loopAnimA(@row, (@ite+1));
+}
+
+.page-photo {
+
+	.slideRight-container {
+		height: 100vh;
+		width: 100vw;
+		overflow-y: hidden;
+		overflow-x: auto;
+		padding: 0 50px;
+
+		a {
+			display: block;
+			vertical-align: middle;
+			width: 100%;
+			height: 25%;
+	    	opacity: 0;
+			-webkit-transform: translateY(50px);
+			-ms-transform: translateY(50px);
+			transform: translateY(50px);
+			-webkit-animation: albumTransition 1s ease-out;
+    		animation: albumTransition 1s ease-out;
+    		-webkit-animation-fill-mode: forwards;
+    		animation-fill-mode: forwards;
+		}
+
+		.slideRight-project {
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+			position: relative;
+			text-align: center;
+
+			img {
+				display: block;
+				position: absolute;
+				top:-100%;
+				left:0;
+				width: 100%;
+				height: auto;
+			}
+
+			.tilt {
+				overflow: hidden;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				margin: 0 auto;
+				top:0;left: 0;
+				display: table;
+				transition: all .1s ease;
+
+				&:before {
+					content: "";
+					z-index: 9;
+					position: absolute;
+					top: 0;left: 0;right: 0;bottom: 0;
+					background: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 23%,rgba(0,0,0,0) 80%);
+				}
+
+				h4 {
+					z-index: 10;
+					position: relative;
+					text-align: center;
+					display: table-cell;
+					vertical-align: middle;
+					font-size: 3em;
+					color: white;
+				}
+
+				.tilt__back,
+				.tilt__front {
+					width: 100%;
+					height: 100%;
+					background-position: 50% 50%;
+					background-repeat: no-repeat;
+					background-size: cover;
+					-webkit-backface-visibility: hidden;
+					backface-visibility: hidden;
+					position: absolute;
+					transition: all .1s ease;
+				}
+
+				.tilt__back {
+					position: absolute;
+				}
+
+				.tilt__front {
+					position: absolute;
+					top: 0;
+					left: 0;
+				}
+			}
+		}
+	}
+
+}
