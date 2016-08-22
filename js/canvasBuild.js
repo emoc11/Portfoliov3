@@ -49,6 +49,54 @@
 		this.ctx.fillRect(0, 0, this.settings.displaySizeWidth, this.settings.displaySize);
 
 
+
+
+
+
+		// Init text layer
+		var checkAlpha = function checkAlpha(pixels, i) {
+		    return pixels[i * 4 + 3] > 0;
+		};
+
+		this.settings.text = "Côme Gaillard";
+		this.settings.font = 'bold 50px "Arial"';
+		this.settings.textBaseline = "center";
+		this.settings.textColor = "#fff";
+		this.textSize = this.ctx.measureText(this.settings.text);
+		this.ctx.fillText(
+		    this.settings.text,
+		    Math.round((this.canvas.width / 2) - (this.textSize.width / 2)),
+		    Math.round(this.canvas.height / 2)
+		);
+		this.imageData = this.ctx.getImageData(1, 1, this.canvas.width, this.canvas.height);
+		this.pixels = this.imageData.data;
+    	this.dataLength = this.imageData.width * this.imageData.height;
+
+    	this.agentPositions = [];
+
+    	//Loop through all pixels
+	    for (var i = 0; i < this.dataLength; i++) {
+	        var currentRow = Math.floor(i / this.imageData.width);
+	        var currentColumn = i - Math.floor(i / this.imageData.height);
+
+	        if (currentRow % 2 || currentColumn % 2) {
+	            continue;
+	        }
+
+	        //If alpha channel is greater than 0
+	        if (checkAlpha(this.pixels, i)) {
+	            var cy = ~~(i / this.imageData.width);
+	            var cx = ~~(i - (cy * this.imageData.width));
+
+	            this.agentPositions.push([cx, cy]);
+	        }
+	    }
+
+
+
+
+
+
 		var $this = this;
 		$(window).resize(function() {
 			$this.ctx.width = document.documentElement.clientWidth;
@@ -217,6 +265,11 @@
 			// Efface écran
 			$this.ctx.fillStyle = "rgba("+$this.settings.backR+", "+$this.settings.backG+", "+$this.settings.backB+", "+$this.settings.backAlpha+")";
 			$this.ctx.fillRect(0, 0, $this.settings.displaySizeWidth, $this.settings.displaySizeHeight);
+
+	    $.each($this.agentPositions, function(i, val) {
+	    	$this.myAgent[i].y = val[1];
+	    	$this.myAgent[i].x = val[0];
+	    });
 
 			// Get Delaunay triangles
 			if ($this.settings.delaunay && !$this.settings.activeDistanceDelaunay) {

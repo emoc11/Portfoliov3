@@ -56,13 +56,15 @@ $(document).ready(function() {
 
 	// Canvas design génératif
 	canvasOne = new canvasBuild();
-	canvasOne.setAgentSizeRandom(1,15);
-	canvasOne.setAgents("rond", 200, 5, .2, 1, true);
+	// canvasOne.setAgentSizeRandom(5,20);
+	canvasOne.setAgents("rond", 250, 1, .2, .8, true);
 	canvasOne.setAgentFillTwoColors("rgb(191,129,72)", "rgb(110,83,55)");
-	canvasOne.setAgentFill("gradient");
-	canvasOne.setAgentGradientSize(5);
-	canvasOne.startDelaunay(0, "rgb(191,129,72)");
-	canvasOne.delaunayMaxDistance(.3, 50);
+	canvasOne.setAgentFill("solid");
+	canvasOne.setAgentGradientSize(8);
+	// canvasOne.startDelaunay(0, "rgb(191,129,72)");
+	canvasOne.delaunayMaxDistance(.3, 70);
 	canvasOne.startAnim();
+
+	
 
 });
