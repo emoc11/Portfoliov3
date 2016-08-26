@@ -1,96 +1,50 @@
 .page-hp {
-	position: relative;
-
-	.fadeInAnim {
-		opacity: 0;
-		animation: fadeInCss 1s ease-out .7s forwards;
+	display: table;
+	vertical-align: middle;
+	text-align: center;
+	margin: 0 auto;
+	width: 95vw;
+	height: 100vh;
+	canvas {
 		position: absolute;
-		z-index:1;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
 	}
 
-	.hp {
-		width: 50vw;
-		height: 100vh;
-		position: absolute;
-		top:0;
-		display: inline-block;
-		vertical-align: middle;
+	nav {
+		position: relative;
 		z-index: 2;
+		display: table-cell;
+		margin: 0 auto;
+		vertical-align: middle;
+		text-align: center;
 
-		a {
-			text-decoration: none;
+		ul.nav {
+			display: inline-block;
+			color: white;
+
+			li:first-child {
+				font-size: 2.5rem;
+			}
+
+			li {
+				margin: 2rem 0;
+			}
+
+			&.pic {
+				float: left;
+				text-align: left;
+			}
+
+			&.web {
+				float: right;
+				text-align: right;
+			}
+
 		}
-
-		.in {
-			position: relative;
-			height: 100%;
-			z-index: 2;
-			display: table;
-			width: 100%;
-			height: 100%;
-			text-align: center;
-
-			h3 {
-				display: table-cell;
-				vertical-align: middle;
-				text-decoration: none;
-				color: white;
-				font-size: 40px;
-				transform: scale(1.2);
-			}
-		}
-
-		.showHover {
-			opacity: 0;
-			transition: all .6s ease-out;
-		}
-
-		& .in:hover {
-			h3 {
-				transform: scale(1);
-			}
-			.showHover {
-				opacity: 1;
-			}
-		}
-
-		&.hp-photo {
-			// left:-50vw;
-			left: 0;
-			top: 0;
-			transform: translateY(-100vh);
-			padding: 80px 0 80px 80px;
-			animation: topToPos .6s ease-out .1s forwards;
-
-			&.anim-off {
-				animation: posToLeft .8s ease-in forwards;
-			}
-
-			.in {
-				background: url("/img/hp-digital.jpg") no-repeat center right;
-				background-size: cover;
-			}
-		}
-
-		&.hp-digital {
-			// right: -50vw;
-			right: 0;
-			top: 0;
-			transform: translateY(100vh);
-			padding: 80px 80px 80px 0;
-			animation: botToPos .6s ease-out .1s forwards;
-
-			&.anim-off {
-				animation: posToRight .8s ease-in forwards;
-			}
-
-			.in {
-				background: url("/img/hp-photo.jpg") no-repeat center left;
-				background-size: cover;
-			}
-		}
-
 	}
-
 
 }
